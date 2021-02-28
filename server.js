@@ -12,7 +12,19 @@ const server = http.createServer((req, res) => {
 
     // console.log(url);
     if (url != '/favicon.ico') {
-
+if(req.url.endsWith('.css')){
+let cssFile = req.url.slice(1);
+fs.readFile (cssFile, (err, data) =>{
+    if (err) throw err;
+    res.setHeader('Content-Type', 'text/css');
+    res.statusCode = 200;
+    res.write(data);
+    res.end()
+})
+}
+else if(){
+    
+}
         fs.readFile(url.substr(1, url.length) + '.html', function (err, data) {
             if (!err) {
                 res.writeHead(200, { 'Content-Type': 'text/html', });
